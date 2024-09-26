@@ -1,0 +1,21 @@
+type Review {
+    score: Int
+    text: String
+    show: Show @external
+}
+
+
+interface Show{
+    showId: Int
+    reviews: [Review]
+}
+
+type Movie implements Show @extends @key(fields: "showId"){
+    showId: Int @external
+    reviews: [Review]
+}
+
+type Series implements Show @key(fields: "showId") {
+    showId: Int @external
+    reviews: [Review]
+}
